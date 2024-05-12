@@ -4,8 +4,8 @@
   "description": "generic users db and API",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
+    "start": "nodemon backend/server.js"
+    
   },
   "author": "Katiuska Alicea",
   "license": "MIT",

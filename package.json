@@ -1,0 +1,19 @@
+{
+  "name": "usersbe",
+  "version": "1.0.0",
+  "description": "generic users db and API",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Katiuska Alicea",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.3.4",
+    "nodemon": "^3.1.0"
+  }
+}

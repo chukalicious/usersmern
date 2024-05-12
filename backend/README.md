@@ -2,8 +2,6 @@
 
 This document outlines the RESTful API endpoints provided by the Users backend.
 
-# Users Backend API Documentation
-
 Welcome to the Users backend API documentation. This API serves as a backend for managing user data, providing endpoints for user registration, profile management, and more.
 
 ## Introduction

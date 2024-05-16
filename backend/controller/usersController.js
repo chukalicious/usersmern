@@ -1,5 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const Users = require('../models/userModels');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 const getUsers = asyncHandler(async (req, res) => {
   const users = await Users.find();
@@ -16,11 +19,33 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 const registerUser = asyncHandler(async (req, res) => {
-  if (!req.body.email || !req.body.password) {
+  const { name, email, password } = req.body;
+  
+  if (!name || !email || !password) {
     res.status(400);
     throw new Error('Please fill all the fields');
   }
-  const newUser = await Users.create(req.body);
+
+  const userExists = await Users.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const newUser = await Users.create({
+    name,
+    email,
+    password: hashedPassword,
+  
+  });
+
+  if(!newUser){
+    res.status(400);
+    throw new Error('Invalid user data');
+  } 
   res.status(201).json(newUser);
 });
 
